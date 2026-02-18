@@ -27,8 +27,8 @@ export interface SescMenuResponse {
   updatedAt: string;
 }
 
-// const API_BASE_URL = 'https://scrap-sesc.onrender.com';
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = 'https://scrap-sesc.onrender.com';
+// const API_BASE_URL = "http://localhost:3000";
 
 export const fetchMenu = async (
   unitySlug: string,
