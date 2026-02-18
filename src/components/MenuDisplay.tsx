@@ -1,66 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { fetchMenu } from '../services/api';
-import type { SescMenuResponse } from '../services/api';
-import { DayCard } from './DayCard';
+import { useQuery } from '@tanstack/react-query';
 import { Loader2 } from 'lucide-react';
+import React from 'react';
+import type { SescMenuResponse } from '../services/api';
+import { fetchMenu } from '../services/api';
 import '../styles/menudisplay.css';
+import { DayCard } from './DayCard';
 
 interface MenuDisplayProps {
-    unitySlug: string;
+  unitySlug: string;
 }
 
 export const MenuDisplay: React.FC<MenuDisplayProps> = ({ unitySlug }) => {
-    const [data, setData] = useState<SescMenuResponse | null>(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error } = useQuery<SescMenuResponse>({
+    queryKey: ['menu', unitySlug],
+    queryFn: () => fetchMenu(unitySlug),
+    enabled: !!unitySlug,
+  });
 
-    useEffect(() => {
-        const loadMenu = async () => {
-            setLoading(true);
-            setError(null);
-            try {
-                const response = await fetchMenu(unitySlug);
-                setData(response);
-            } catch (err) {
-                setError('Failed to load menu. Please try again.');
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        if (unitySlug) {
-            loadMenu();
-        }
-    }, [unitySlug]);
-
-    if (loading) {
-        return (
-            <div className="loading-container">
-                <Loader2 className="spinner" size={48} />
-                <p>Loading tasty options...</p>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className="error-container">
-                <p>{error}</p>
-            </div>
-        );
-    }
-
-    if (!data) return null;
-
+  if (isLoading) {
     return (
-        <div className="menu-display">
-            <h2 className="unity-title">{data.data.unidade}</h2>
-            <div className="cards-grid">
-                {Object.entries(data.data.dias).map(([day, menu]) => (
-                    <DayCard key={day} day={day} menu={menu} />
-                ))}
-            </div>
-        </div>
+      <div className="loading-container">
+        <Loader2 className="spinner" size={48} />
+        <p>Loading tasty options...</p>
+      </div>
     );
+  }
+
+  if (error) {
+    return (
+      <div className="error-container">
+        <p>Failed to load menu. Please try again.</p>
+      </div>
+    );
+  }
+
+  if (!data) return null;
+
+  return (
+    <div className="menu-display">
+      <h2 className="unity-title">{data.data.unidade}</h2>
+      <div className="cards-grid">
+        {Object.entries(data.data.dias).map(([day, menu]) => (
+          <DayCard key={day} day={day} menu={menu} />
+        ))}
+      </div>
+    </div>
+  );
 };
