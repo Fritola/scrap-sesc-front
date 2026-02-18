@@ -17,7 +17,7 @@ export const UnitySelector: React.FC<UnitySelectorProps> = ({ onSelect, selected
     return (
         <div className="selector-container">
             <label htmlFor="unity-select" className="selector-label">
-                Select Unit
+                Selecione a Unidade
             </label>
             <div className="select-wrapper">
                 <select

@@ -11,6 +11,7 @@ export interface DailyMenu {
 export interface DayMenu {
   day: string;
   menu: DailyMenu;
+  dayNumber: string;
 }
 
 export type SemanalMenu = DayMenu[];

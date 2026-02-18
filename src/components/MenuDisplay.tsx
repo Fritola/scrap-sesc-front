@@ -21,7 +21,7 @@ export const MenuDisplay: React.FC<MenuDisplayProps> = ({ unitySlug }) => {
     return (
       <div className="loading-container">
         <Loader2 className="spinner" size={48} />
-        <p>Loading tasty options...</p>
+        <p>Carregando opções deliciosas...</p>
       </div>
     );
   }
@@ -29,7 +29,7 @@ export const MenuDisplay: React.FC<MenuDisplayProps> = ({ unitySlug }) => {
   if (error) {
     return (
       <div className="error-container">
-        <p>Failed to load menu. Please try again.</p>
+        <p>Erro ao carregar cardápio. Tente novamente.</p>
       </div>
     );
   }
@@ -40,8 +40,8 @@ export const MenuDisplay: React.FC<MenuDisplayProps> = ({ unitySlug }) => {
     <div className="menu-display">
       <h2 className="unity-title">{data.unit}</h2>
       <div className="cards-grid">
-        {data.data.dias.map(({ day, menu }) => (
-          <DayCard key={day} day={day} menu={menu} />
+        {data.data.dias.map(({ day, menu, dayNumber }) => (
+          <DayCard key={day} day={`${day} - ${dayNumber}`} menu={menu} />
         ))}
       </div>
     </div>

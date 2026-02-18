@@ -24,9 +24,10 @@ function App() {
         <header className="app-header">
           <div className="logo-container">
             <UtensilsCrossed className="logo-icon" size={32} />
-            <h1>Sesc Menu Viewer</h1>
+            <h1>Menu do Sesquinho</h1>
           </div>
-          <p className="subtitle">Discover daily delights at your favorite unit</p>
+          <p className="subtitle">Descubra o cardápio semanal na unidade que você deseja</p>
+          <p className="subtitle">Atualizado semanalmente de acordo com as informações do SESC</p>
         </header>
 
         <main className="main-content">
@@ -43,7 +44,8 @@ function App() {
         </main>
 
         <footer className="app-footer">
-          <p>© {new Date().getFullYear()} Sesc Menu Viewer. Not affiliated with Sesc.</p>
+          <p>© {new Date().getFullYear()} Menu Sesquinho. Não temos relação com o SESC.</p>
+          <p>Desenvolvido por Gustavo Fritola</p>
         </footer>
       </div>
     </QueryClientProvider>
