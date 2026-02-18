@@ -38,9 +38,9 @@ export const MenuDisplay: React.FC<MenuDisplayProps> = ({ unitySlug }) => {
 
   return (
     <div className="menu-display">
-      <h2 className="unity-title">{data.data.unidade}</h2>
+      <h2 className="unity-title">{data.unit}</h2>
       <div className="cards-grid">
-        {Object.entries(data.data.dias).map(([day, menu]) => (
+        {data.data.dias.map(({ day, menu }) => (
           <DayCard key={day} day={day} menu={menu} />
         ))}
       </div>
