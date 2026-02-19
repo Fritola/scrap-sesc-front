@@ -63,3 +63,19 @@
     transform: rotate(180deg);
     color: var(--accent-primary);
 }
+
+.hint {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: opacity var(--transition-normal);
+}
+
+.selector-container:hover .hint {
+    opacity: 1;
+}

@@ -10,6 +10,7 @@ interface UnitySelectorProps {
 const UNITIES = [
     { slug: 'sesc-24-de-maio', name: 'Sesc 24 de Maio' },
     { slug: 'sesc-casa-verde', name: 'Sesc Casa Verde' },
+    // { slug: 'sesc-pompeia', name: 'Sesc Pompeia' },
     // { slug: 'sesc-pinheiros', name: 'Sesc Pinheiros' },
 ];
 
@@ -34,6 +35,9 @@ export const UnitySelector: React.FC<UnitySelectorProps> = ({ onSelect, selected
                 </select>
                 <ChevronDown className="select-icon" size={20} />
             </div>
+            <p className="hint">
+                Mais unidades em breve
+            </p>
         </div>
     );
 };
